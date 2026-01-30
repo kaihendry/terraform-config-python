@@ -1,0 +1,24 @@
+project: my-app
+environment: production
+region: eastus
+
+database:
+  tier: standard
+  storage_gb: 64
+  version: "16"
+  high_availability: false
+  backup_retention_days: 14
+
+storage:
+  tier: standard
+  containers:
+    - name: uploads
+      access: private
+    - name: public-assets
+      access: blob
+
+owner: backend-team
+cost_center: engineering
+tags:
+  service: api
+  team: platform

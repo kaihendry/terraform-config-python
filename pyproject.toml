@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "infra-config"
+version = "0.1.0"
+description = "Config-to-Terraform Infrastructure Platform"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "typer>=0.9",
+    "rich>=13.0",
+]
+
+[project.scripts]
+infra-config = "infra_config.cli:app"
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0",
+    "pytest-subprocess>=1.5",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/infra_config"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/infra_config"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: marks tests requiring terraform",
+    "azure: marks tests requiring Azure credentials (skipped by default)",
+]
+# Skip azure tests by default - run with: pytest -m azure or RUN_AZURE_TESTS=1 pytest
+addopts = "-m 'not azure'"

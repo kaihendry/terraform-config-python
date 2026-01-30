@@ -1,0 +1,6 @@
+project: testapp
+environment: dev
+
+database:
+  tier: starter
+  storage_gb: 32
