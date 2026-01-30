@@ -1,9 +1,6 @@
 # Generated output
 output/
 
-# Local issue tracking
-.beads/
-
 # Python
 __pycache__/
 *.py[cod]
